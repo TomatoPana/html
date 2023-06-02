@@ -2,7 +2,10 @@ import * as jsxRuntime from "react/jsx-runtime";
 import ReactDOMServer from "react-dom/server";
 import { createInertiaApp } from "@inertiajs/react";
 import createServer from "@inertiajs/react/server";
+import SSRProvider from "react-bootstrap/cjs/SSRProvider.js";
+const Fragment = jsxRuntime.Fragment;
 const jsx = jsxRuntime.jsx;
+const jsxs = jsxRuntime.jsxs;
 async function resolvePageComponent(path, pages) {
   const page = pages[path];
   if (typeof page === "undefined") {
@@ -487,7 +490,7 @@ createServer(
     page,
     render: ReactDOMServer.renderToString,
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, /* @__PURE__ */ Object.assign({ "./Pages/Home.tsx": () => import("./assets/Home-7bb6440c.js") })),
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, /* @__PURE__ */ Object.assign({ "./Pages/Home.tsx": () => import("./assets/Home-941c620d.js") })),
     setup: ({ App, props }) => {
       global.route = (name, params, absolute) => A(name, params, absolute, {
         // @ts-expect-error
@@ -495,10 +498,12 @@ createServer(
         // @ts-expect-error
         location: new URL(page.props.ziggy.location)
       });
-      return /* @__PURE__ */ jsx(App, { ...props });
+      return /* @__PURE__ */ jsx(SSRProvider, { children: /* @__PURE__ */ jsx(App, { ...props }) });
     }
   })
 );
 export {
+  Fragment as F,
+  jsxs as a,
   jsx as j
 };
