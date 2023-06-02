@@ -1,0 +1,44 @@
+// https://aka.ms/devcontainer.json
+{
+	"name": "Proyecto Final (Contenedor)",
+	"dockerComposeFile": [
+		"../docker-compose.yml"
+	],
+	"service": "laravel.test",
+	"workspaceFolder": "/var/www/html",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"aaron-bond.better-comments",
+				"mikestead.dotenv",
+				"onecentlin.laravel5-snippets",
+				"jakebathman.mysql-syntax",
+				"neilbrayfield.php-docblocker",
+				"adpyke.codesnap",
+				"michelemelluso.gitignore",
+				"kisstkondoros.vscode-gutter-preview",
+				"ryannaddy.laravel-artisan",
+				"shufo.vscode-blade-formatter",
+				"onecentlin.laravel-blade",
+				"IHunte.laravel-blade-wrapper",
+				"glitchbl.laravel-create-view",
+				"onecentlin.laravel-extension-pack",
+				"amiralizadeh9480.laravel-extra-intellisense",
+				"codingyu.laravel-goto-view",
+				"naoray.laravel-goto-components",
+				"xdebug.php-debug",
+				"bmewburn.vscode-intelephense-client",
+				"SanderRonde.phpstan-vscode",
+				"natqe.reload",
+				"streetsidesoftware.code-spell-checker-spanish",
+				"streetsidesoftware.code-spell-checker"
+			],
+			"settings": {}
+		}
+	},
+	"remoteUser": "sail",
+	"postCreateCommand": "chown -R 1000:1000 /var/www/html"
+	// "forwardPorts": [],
+	// "runServices": [],
+	// "shutdownAction": "none",
+}

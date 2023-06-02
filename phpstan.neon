@@ -1,0 +1,20 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+
+    # Level 9 is the highest level
+    level: 5
+
+#    ignoreErrors:
+#        - "#Access to an undefined property#"
+#        - "#Call to an undefined method#"
+#        - "#Class [a-zA-Z0-9\\\\_]+ not found.#"
+#        - "#Unsafe usage of new static#"
+#
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php
+#
+#    checkMissingIterableValueType: false
