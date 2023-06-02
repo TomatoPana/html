@@ -1,3 +1,340 @@
 .py-56 {
     padding-top: 56px;
 }
+
+body {
+    color: #fff;
+    background: #000000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-control {
+    height: 40px;
+    box-shadow: none;
+    color: #969fa4;
+}
+
+.form-control:focus {
+    border-color: #b85c5c;
+}
+
+.form-control,
+.btn {
+    border-radius: 3px;
+}
+
+.signup-form {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px 0;
+    font-size: 15px;
+}
+
+.signup-form h2 {
+    color: #636363;
+    margin: 0 0 15px;
+    position: relative;
+    text-align: center;
+}
+
+.signup-form h2:before,
+.signup-form h2:after {
+    content: "";
+    height: 2px;
+    width: 30%;
+    background: #532a2a;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+
+.signup-form h2:before {
+    left: 0;
+}
+
+.signup-form h2:after {
+    right: 0;
+}
+
+.signup-form .hint-text {
+    color: #999;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.signup-form form {
+    color: #999;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    background: #f2f3f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.signup-form .form-group {
+    margin-bottom: 20px;
+}
+
+.signup-form input[type="checkbox"] {
+    margin-top: 3px;
+}
+
+.signup-form .btn {
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 140px;
+    outline: none !important;
+}
+
+.signup-form .row div:first-child {
+    padding-right: 10px;
+}
+
+.signup-form .row div:last-child {
+    padding-left: 10px;
+}
+
+.signup-form a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.signup-form a:hover {
+    text-decoration: none;
+}
+
+.signup-form form a {
+    color: #b85c5c;
+    text-decoration: none;
+}
+
+.signup-form form a:hover {
+    text-decoration: underline;
+}
+
+
+.form-control {
+    height: 40px;
+    box-shadow: none;
+    color: #969fa4;
+}
+
+.form-control:focus {
+    border-color: #5cb85c;
+}
+
+.form-control,
+.btn {
+    border-radius: 3px;
+}
+
+.login-form {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px 0;
+    font-size: 15px;
+}
+
+.login-form h2 {
+    color: #636363;
+    margin: 0 0 15px;
+    position: relative;
+    text-align: center;
+}
+
+.login-form h2:before,
+.login-form h2:after {
+    content: "";
+    height: 2px;
+    width: 15%;
+    background: #532a2a;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+
+.login-form h2:before {
+    left: 0;
+}
+
+.login-form h2:after {
+    right: 0;
+}
+
+.login-form .hint-text {
+    color: #999;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.login-form form {
+    color: #999;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    background: #f2f3f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form input[type="checkbox"] {
+    margin-top: 3px;
+}
+
+.login-form .btn {
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 140px;
+    outline: none !important;
+}
+
+.login-form .row div:first-child {
+    padding-right: 10px;
+}
+
+.login-form .row div:last-child {
+    padding-left: 10px;
+}
+
+.login-form a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.login-form a:hover {
+    text-decoration: none;
+}
+
+.login-form form a {
+    color: #5cb85c;
+    text-decoration: none;
+}
+
+.login-form form a:hover {
+    text-decoration: underline;
+}
+
+.nosotros {
+    width: 100%;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.linea {
+    border-top: 2px solid #C83A3A;
+    height: 2px;
+    max-width: 80%;
+    padding: 0;
+    margin: 20px auto 0 auto;
+}
+.us {
+    text-align: center;
+    width: 85%;
+    margin: auto;
+    display: grid;
+    place-items: center;
+}
+
+.pagina-juego{
+    width: 100%;
+    padding-top: 55px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.banner{
+    background-size: cover;
+    background-position: center center;
+    background-image: url(https://th.bing.com/th/id/OIP.wOZUoxC6POew98eEh2cJZQHaEK?pid=ImgDet&rs=1);
+    width: 100%;
+    height: 300px;
+    filter: blur(2px);
+}
+
+.portada-juego{
+    float: left;
+    width: 38%;
+    margin-right: 15px;
+    margin-top: 30px;
+}
+
+.titulo-juego{
+    margin-top: 30px;
+}
+
+.info-juego{
+    float: left;
+    width: 58%;
+    margin-top: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main-container{
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.rating-star {
+    background: url(/img/star.png);
+    width: 22px;
+    height: 26px;
+    margin-right: 4px;
+}
+
+ .stats{
+    margin: auto;
+    display: grid;
+    place-items: center;
+ }
+
+ .listado-filtros{
+    margin-top: 4em;
+ }
+
+ #filtros-container .list-group-item-action.active{
+    background-color: red;
+    border: #000000;
+ }
+
+ #filtros-container .list-group{
+    margin-bottom: 1em;
+ }
+
+ .listado-productos{
+    margin-top: 4em;
+ }
+
+@media (max-width: 768px){
+    .listado-productos{
+        margin-top: 2em;
+    }
+    .listado-productos .card-img-top{
+        width: 100%;
+    }
+}
+
+#paginator-container .page-item.active .page-link {
+    background-color: #C83A3A;
+    border-color: #C83A3A;
+    color: white;
+}
+
+#paginator-container .page-item:not(.active):not(.disabled) .page-link{
+    color: #C83A3A;
+}
+ .purple-border textarea {
+    border: 1px solid #ba68c8;
+}
+.purple-border .form-control:focus {
+    border: 1px solid #ba68c8;
+    box-shadow: 0 0 0 0.2rem rgba(186, 104, 200, .25);
+}
+
+.green-border-focus .form-control:focus {
+    border: 1px solid #8bc34a;
+    box-shadow: 0 0 0 0.2rem rgba(139, 195, 74, .25);
+}
