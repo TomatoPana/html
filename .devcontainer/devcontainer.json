@@ -1,14 +1,14 @@
 // https://aka.ms/devcontainer.json
 {
-	"name": "Proyecto Final (Contenedor)",
-	"dockerComposeFile": [
-		"../docker-compose.yml"
-	],
-	"service": "laravel.test",
-	"workspaceFolder": "/var/www/html",
-	"customizations": {
-		"vscode": {
-			"extensions": [
+    "name": "Proyecto Final (Contenedor)",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "laravel.test",
+    "workspaceFolder": "/var/www/html",
+    "customizations": {
+        "vscode": {
+            "extensions": [
 				"aaron-bond.better-comments",
 				"mikestead.dotenv",
 				"onecentlin.laravel5-snippets",
@@ -31,14 +31,22 @@
 				"SanderRonde.phpstan-vscode",
 				"natqe.reload",
 				"streetsidesoftware.code-spell-checker-spanish",
-				"streetsidesoftware.code-spell-checker"
+				"streetsidesoftware.code-spell-checker",
+				"ecmel.vscode-html-css",
+				"christian-kohler.npm-intellisense",
+				"christian-kohler.path-intellisense"
 			],
-			"settings": {}
-		}
-	},
-	"remoteUser": "sail",
-	"postCreateCommand": "chown -R 1000:1000 /var/www/html"
-	// "forwardPorts": [],
-	// "runServices": [],
-	// "shutdownAction": "none",
+            "settings": {}
+        }
+    },
+    "remoteUser": "sail",
+    "postCreateCommand": "chown -R 1000:1000 /var/www/html",
+    "postStartCommand": [
+        "export XDEBUG_MODE=develop,debug",
+        "export XDEBUG_TRIGGER=session",
+        "export XDEBUG_CONFIG=\"client_host=127.0.0.1 client_port=9999\""
+    ]
+    // "forwardPorts": [],
+    // "runServices": [],
+    // "shutdownAction": "none",
 }
