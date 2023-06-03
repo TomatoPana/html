@@ -1,10 +1,21 @@
 import Navbar from '@/Components/Navbar';
+import Logo from '../../img/logoGameflix.png'
+
+export interface Game {
+  imageUrl: string;
+  name: string;
+  price: string;
+  platforms: string[];
+  purchased: boolean;
+}
 
 export default function Catalog () {
   return (
     <>
       <Navbar />
-      <main>
+      <main className='py-56'>
+        <img src={ Logo } alt="Logo Gameflix" height="100px" />
+        <div className="linea"></div>
         <section id="productos-container">
           <div className="container">
             <div className="row">

@@ -1,17 +1,19 @@
 import Navbar from '@/Components/Navbar';
 import ControlledCarousel from '@/Components/Carousel';
-import image from "../../img/genshinimpact.jpg";
+import firstImage from "../../img/genshinimpact.jpg";
+import secondImage from "../../img/fallguys.jpg";
+import thirdImage from "../../img/overwatch.jpg";
 
 export default function Home () {
     const data = [
         {
-            imageUrl: image
+            imageUrl: firstImage
         },
         {
-            imageUrl: image
+            imageUrl: secondImage
         },
         {
-            imageUrl: image
+            imageUrl: thirdImage
         }
     ];
     return (

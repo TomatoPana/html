@@ -490,7 +490,7 @@ createServer(
     page,
     render: ReactDOMServer.renderToString,
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, /* @__PURE__ */ Object.assign({ "./Pages/AboutUs.tsx": () => import("./assets/AboutUs-56a60ec1.js"), "./Pages/Catalog.tsx": () => import("./assets/Catalog-277ed971.js"), "./Pages/Home.tsx": () => import("./assets/Home-9fc38b21.js"), "./Pages/Login.tsx": () => import("./assets/Login-baff0c39.js") })),
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, /* @__PURE__ */ Object.assign({ "./Pages/AboutUs.tsx": () => import("./assets/AboutUs-56a60ec1.js"), "./Pages/Catalog.tsx": () => import("./assets/Catalog-fa50dcba.js"), "./Pages/Home.tsx": () => import("./assets/Home-9fc38b21.js"), "./Pages/Login.tsx": () => import("./assets/Login-baff0c39.js") })),
     setup: ({ App, props }) => {
       global.route = (name, params, absolute) => A(name, params, absolute, {
         // @ts-expect-error
