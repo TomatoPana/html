@@ -9,6 +9,10 @@ export interface Game {
   purchased: boolean;
 }
 
+export interface Categories {
+  name: string;
+}
+
 export default function Catalog () {
   return (
     <>

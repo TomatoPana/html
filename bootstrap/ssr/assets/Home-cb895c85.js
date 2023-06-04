@@ -27,17 +27,19 @@ function ControlledCarousel({ data }) {
     ] }) : null
   ] }, index2)) });
 }
-const image = "/build/assets/genshinimpact-754d59e0.jpg";
+const firstImage = "/build/assets/genshinimpact-754d59e0.jpg";
+const secondImage = "/build/assets/fallguys-8fbc2956.jpg";
+const thirdImage = "/build/assets/overwatch-606c5f17.jpg";
 function Home() {
   const data = [
     {
-      imageUrl: image
+      imageUrl: firstImage
     },
     {
-      imageUrl: image
+      imageUrl: secondImage
     },
     {
-      imageUrl: image
+      imageUrl: thirdImage
     }
   ];
   return /* @__PURE__ */ jsxs(Fragment, { children: [

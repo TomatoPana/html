@@ -1,11 +1,11 @@
 import { j as jsxs, F as Fragment, a as jsx } from "../ssr.js";
 import { N as Navbar } from "./Navbar-6647be99.js";
+import { L as Logo } from "./logoGameflix-dd02ce1e.js";
 import "react/jsx-runtime";
 import "react-dom/server";
 import "@inertiajs/react";
 import "@inertiajs/react/server";
 import "react-bootstrap/cjs/SSRProvider.js";
-const Logo = "/build/assets/logoGameflix-a40265b3.png";
 function AboutUs() {
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsx(Navbar, {}),

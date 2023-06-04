@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,15 +35,28 @@ Route::get('login', function () {
 Route::post('login', function (Request $request) {
     if ($request->user() !== null) return redirect(route('home'));
     $validated = $request->validate([
-        '' => '',
+        'username' => 'required|string|max:255',
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255',
+        'password' => 'required|string|confirmed|max:255',
     ]);
 })->name('auth.login');
 
 Route::post('register', function (Request $request) {
     if ($request->user() !== null) return redirect(route('home'));
     $validated = $request->validate([
-        '' => '',
+        'username' => 'required|string|max:255',
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255',
+        'password' => 'required|string|confirmed|max:255',
     ]);
+
+    User::create($validated);
+
+    return Inertia::render('Login', ['message' => [
+        'type' => 'success',
+        'message' => 'registro exitoso'
+    ]]);
 });
 
 Route::post('logout', function (Request $request) {
@@ -54,4 +68,10 @@ Route::get('admin', function (Request $request) {
     $user = $request->user();
     if (!$user->admin) return redirect(route('home'));
     return Inertia::render('Admin/Dashboard');
+});
+
+Route::get('admin/create', function () {
+});
+
+Route::post('admin/create', function () {
 });

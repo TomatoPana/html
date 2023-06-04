@@ -1,11 +1,20 @@
 import Navbar from '@/Components/Navbar';
+import Alert from 'react-bootstrap/cjs/Alert';
 
-export default function Login () {
+interface LoginProps {
+    message?: {
+        "type": string,
+        "message": string,
+    };
+}
+
+export default function Login ( { message }: LoginProps ) {
     return (
         <>
             <Navbar />
             <main className='py-56'>
                 <div className="container">
+                    { ( message !== undefined ) ? <Alert variant={ message.type }>{ message.message }</Alert> : null }
                     <div className="row">
                         <div className="col-5">
                             <div className="login-form">
