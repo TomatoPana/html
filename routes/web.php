@@ -5,7 +5,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 /*
@@ -50,12 +49,24 @@ Route::get('about', function (Request $request) use ($navbarItems) {
     ]);
 })->name('about');
 
-Route::get('catalog', function (Request $request) {
-    return Inertia::render('Catalog');
+Route::get('catalog', function (Request $request) use ($navbarItems) {
+    return Inertia::render('Catalog', [
+        'navbarInfo' => [
+            'isLoggedIn' => ($request->user() !== null),
+            'items' => $navbarItems,
+            'currentItem' => 1,
+        ],
+    ]);
 })->name('catalog');
 
-Route::get('login', function () {
-    return Inertia::render('Login');
+Route::get('login', function (Request $request) use ($navbarItems) {
+    return Inertia::render('Login', [
+        'navbarInfo' => [
+            'isLoggedIn' => ($request->user() !== null),
+            'items' => $navbarItems,
+            'currentItem' => -1,
+        ],
+    ]);
 })->name('login');
 
 Route::post('login', function (Request $request) {

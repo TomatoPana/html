@@ -1,4 +1,4 @@
-import Navbar from '@/Components/Navbar';
+import Navbar, { NavbarProps } from '@/Components/Navbar';
 import Logo from '../../img/logoGameflix.png'
 
 export interface Game {
@@ -9,14 +9,25 @@ export interface Game {
   purchased: boolean;
 }
 
-export interface Categories {
+export interface Category {
+  id: string;
   name: string;
 }
 
-export default function Catalog () {
+export interface CatalogProps {
+  games: Game[];
+  categories: Category[];
+  navbarInfo: NavbarProps;
+}
+
+export default function Catalog ( props: CatalogProps ) {
   return (
     <>
-      <Navbar />
+      <Navbar
+        isLoggedIn={ props.navbarInfo.isLoggedIn }
+        items={ props.navbarInfo.items }
+        currentItem={ props.navbarInfo.currentItem }
+      />
       <main className='py-56'>
         <img src={ Logo } alt="Logo Gameflix" height="100px" />
         <div className="linea"></div>
@@ -169,36 +180,6 @@ export default function Catalog () {
                         <p className="card-text">$000.00</p>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-xs-12 text-center" id="paginator-container">
-                    <nav>
-                      <ul className="pagination">
-                        <li className="page-item disabled">
-                          <a href="#" className="page-link">
-                            &laquo;
-                          </a>
-                        </li>
-                        <li className="page-item active">
-                          <a href="#" className="page-link">1</a>
-                        </li>
-                        <li className="page-item">
-                          <a href="#" className="page-link">2</a>
-                        </li>
-                        <li className="page-item">
-                          <a href="#" className="page-link">3</a>
-                        </li>
-                        <li className="page-item">
-                          <a href="#" className="page-link">4</a>
-                        </li>
-                        <li className="page-item">
-                          <a href="#" className="page-link">
-                            &raquo;
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
                   </div>
                 </div>
               </div>
