@@ -1,10 +1,18 @@
-import Navbar from '@/Components/Navbar';
+import Navbar, { NavbarProps } from '@/Components/Navbar';
 import Logo from '../../img/logoGameflix.png'
 
-export default function AboutUs () {
+export type PageProps = {
+    navbarInfo: NavbarProps
+};
+
+export default function AboutUs ( props: PageProps ) {
     return (
         <>
-            <Navbar />
+            <Navbar
+                isLoggedIn={ props.navbarInfo.isLoggedIn }
+                items={ props.navbarInfo.items }
+                currentItem={ props.navbarInfo.currentItem }
+            />
             <main className='py-56'>
                 <div className="nosotros">
                     <img src={ Logo } alt="Logo Gameflix" height="100px" />

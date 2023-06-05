@@ -1,4 +1,4 @@
-import Navbar from '@/Components/Navbar';
+import Navbar, { NavbarProps } from '@/Components/Navbar';
 import Alert from 'react-bootstrap/cjs/Alert';
 
 interface LoginProps {
@@ -6,19 +6,23 @@ interface LoginProps {
         "type": string,
         "message": string,
     };
+    navbarInfo: NavbarProps;
 }
 
-export default function Login ( { message }: LoginProps ) {
+export default function Login ( { message, navbarInfo }: LoginProps ) {
     return (
         <>
-            <Navbar />
+            <Navbar
+                isLoggedIn={ navbarInfo.isLoggedIn }
+                items={ navbarInfo.items }
+                currentItem={ navbarInfo.currentItem } />
             <main className='py-56'>
                 <div className="container">
                     { ( message !== undefined ) ? <Alert variant={ message.type }>{ message.message }</Alert> : null }
                     <div className="row">
                         <div className="col-5">
                             <div className="login-form">
-                                <form action="/examples/actions/confirmation.php" method="post">
+                                <form>
                                     <h2>Iniciar Sesión</h2>
                                     <p className="hint-text">Bienvenido a Gameflix</p>
                                     <div className="form-group">
@@ -35,7 +39,7 @@ export default function Login ( { message }: LoginProps ) {
                         </div>
                         <div className="col-7">
                             <div className="signup-form">
-                                <form action="/examples/actions/confirmation.php" method="post">
+                                <form>
                                     <h2>Registrarse</h2>
                                     <p className="hint-text">Crea tu cuenta. Es gratis y solo tomará un minuto.</p>
                                     <div className="form-group">

@@ -1,14 +1,14 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import Carousel from 'react-bootstrap/cjs/Carousel';
 
-export interface PromoCarouselItems {
+export interface PromoCarouselItem {
     imageUrl: string;
     imageAlt?: string;
     promoName?: string;
     promoDescription?: string;
 }
 
-export default function ControlledCarousel ( { data }: { data: PromoCarouselItems[] } ) {
+export default function ControlledCarousel ( { data }: { data: PromoCarouselItem[] } ) {
     const [ index, setIndex ] = useState( 0 );
 
     const handleSelect = ( selectedIndex: number ) => {

@@ -1,26 +1,21 @@
-import Navbar from '@/Components/Navbar';
-import ControlledCarousel from '@/Components/Carousel';
-import firstImage from "../../img/genshinimpact.jpg";
-import secondImage from "../../img/fallguys.jpg";
-import thirdImage from "../../img/overwatch.jpg";
+import Navbar, { NavbarProps } from '@/Components/Navbar';
+import ControlledCarousel, { PromoCarouselItem } from '@/Components/Carousel';
 
-export default function Home () {
-    const data = [
-        {
-            imageUrl: firstImage
-        },
-        {
-            imageUrl: secondImage
-        },
-        {
-            imageUrl: thirdImage
-        }
-    ];
+export type HomeProps = {
+    carouselInfo: PromoCarouselItem[],
+    navbarInfo: NavbarProps
+};
+
+export default function Home ( props: HomeProps ) {
     return (
         <>
-            <Navbar />
+            <Navbar
+                isLoggedIn={ props.navbarInfo.isLoggedIn }
+                items={ props.navbarInfo.items }
+                currentItem={ props.navbarInfo.currentItem }
+            />
             <main className='py-56'>
-                <ControlledCarousel data={ data } />
+                <ControlledCarousel data={ props.carouselInfo } />
                 <h1>Main</h1>
             </main>
         </>

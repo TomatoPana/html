@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 /*
@@ -16,12 +19,35 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
+$navbarItems = [
+    ['name' => 'Inicio', 'href' => '/'],
+    ['name' => 'Acerca de', 'href' => '/about'],
+    ['name' => 'Catalogo', 'href' => '/catalog']
+];
+
+Route::get('/', function (Request $request) use ($navbarItems) {
+    return Inertia::render('Home', [
+        'carouselInfo' => [
+            ['imageUrl' => asset('storage/genshinimpact.jpg')],
+            ['imageUrl' => asset('storage/fallguys.jpg')],
+            ['imageUrl' => asset('storage/overwatch.jpg')],
+        ],
+        'navbarInfo' => [
+            'isLoggedIn' => ($request->user() !== null),
+            'items' => $navbarItems,
+            'currentItem' => 0,
+        ],
+    ]);
 })->name('home');
 
-Route::get('about', function () {
-    return Inertia::render('AboutUs');
+Route::get('about', function (Request $request) use ($navbarItems) {
+    return Inertia::render('AboutUs', [
+        'navbarInfo' => [
+            'isLoggedIn' => ($request->user() !== null),
+            'items' => $navbarItems,
+            'currentItem' => 1,
+        ],
+    ]);
 })->name('about');
 
 Route::get('catalog', function (Request $request) {
@@ -36,10 +62,24 @@ Route::post('login', function (Request $request) {
     if ($request->user() !== null) return redirect(route('home'));
     $validated = $request->validate([
         'username' => 'required|string|max:255',
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255',
-        'password' => 'required|string|confirmed|max:255',
+        'password' => 'required|string|max:255',
     ]);
+
+    if (!Auth::attempt([
+        'username' => $validated['username'],
+        'password' => $validated['password']
+    ])) {
+        return Inertia::render('Login', ['message' => [
+            'type' => 'danger',
+            'message' => 'Credenciales incorrectas'
+        ]]);
+    }
+
+    $user = User::where('username', $validated['username'])->first();
+
+    Auth::login($user);
+
+    return redirect(route('home'));
 })->name('auth.login');
 
 Route::post('register', function (Request $request) {
@@ -55,7 +95,7 @@ Route::post('register', function (Request $request) {
 
     return Inertia::render('Login', ['message' => [
         'type' => 'success',
-        'message' => 'registro exitoso'
+        'message' => 'Registro exitoso'
     ]]);
 });
 
@@ -70,8 +110,4 @@ Route::get('admin', function (Request $request) {
     return Inertia::render('Admin/Dashboard');
 });
 
-Route::get('admin/create', function () {
-});
-
-Route::post('admin/create', function () {
-});
+Route::resource('admin/games', GameController::class);
