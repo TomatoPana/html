@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Models\Category;
+use App\Models\Console;
+use App\Models\Game;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +38,7 @@ Route::get('/', function (Request $request) use ($navbarItems) {
             'isLoggedIn' => ($request->user() !== null),
             'items' => $navbarItems,
             'currentItem' => 0,
+            'isAdmin' => $request->user()?->admin ?? false,
         ],
     ]);
 })->name('home');
@@ -45,17 +49,33 @@ Route::get('about', function (Request $request) use ($navbarItems) {
             'isLoggedIn' => ($request->user() !== null),
             'items' => $navbarItems,
             'currentItem' => 1,
+            'isAdmin' => $request->user()?->admin ?? false,
         ],
     ]);
 })->name('about');
 
 Route::get('catalog', function (Request $request) use ($navbarItems) {
+
+    $games = Game::all()->map(function (Game $game) {
+        return [
+            'name' => $game->name,
+            'price' => $game->price,
+            'rating' => $game->rating,
+            'imageUrl' => $game->image_url,
+            // @phpstan-ignore-next-line
+            'platforms' => $game->consoles->map(fn (Console $platform) => $platform->name)->toArray(),
+        ];
+    })->toArray();
+
     return Inertia::render('Catalog', [
         'navbarInfo' => [
             'isLoggedIn' => ($request->user() !== null),
             'items' => $navbarItems,
-            'currentItem' => 1,
+            'currentItem' => 2,
+            'isAdmin' => $request->user()?->admin ?? false,
         ],
+        'categories' => Category::all(['id', 'name'])->all(),
+        'games' => $games,
     ]);
 })->name('catalog');
 
@@ -65,11 +85,12 @@ Route::get('login', function (Request $request) use ($navbarItems) {
             'isLoggedIn' => ($request->user() !== null),
             'items' => $navbarItems,
             'currentItem' => -1,
+            'isAdmin' => $request->user()?->admin ?? false,
         ],
     ]);
 })->name('login');
 
-Route::post('login', function (Request $request) {
+Route::post('login', function (Request $request) use ($navbarItems) {
     if ($request->user() !== null) return redirect(route('home'));
     $validated = $request->validate([
         'username' => 'required|string|max:255',
@@ -80,10 +101,18 @@ Route::post('login', function (Request $request) {
         'username' => $validated['username'],
         'password' => $validated['password']
     ])) {
-        return Inertia::render('Login', ['message' => [
-            'type' => 'danger',
-            'message' => 'Credenciales incorrectas'
-        ]]);
+        return Inertia::render('Login', [
+            'navbarInfo' => [
+                'isLoggedIn' => false,
+                'items' => $navbarItems,
+                'currentItem' => -1,
+                'isAdmin' => false,
+            ],
+            'message' => [
+                'type' => 'danger',
+                'message' => 'Credenciales incorrectas'
+            ]
+        ]);
     }
 
     $user = User::where('username', $validated['username'])->first();
@@ -93,7 +122,7 @@ Route::post('login', function (Request $request) {
     return redirect(route('home'));
 })->name('auth.login');
 
-Route::post('register', function (Request $request) {
+Route::post('register', function (Request $request) use ($navbarItems) {
     if ($request->user() !== null) return redirect(route('home'));
     $validated = $request->validate([
         'username' => 'required|string|max:255',
@@ -104,10 +133,18 @@ Route::post('register', function (Request $request) {
 
     User::create($validated);
 
-    return Inertia::render('Login', ['message' => [
-        'type' => 'success',
-        'message' => 'Registro exitoso'
-    ]]);
+    return Inertia::render('Login', [
+        'navbarInfo' => [
+            'isLoggedIn' => false,
+            'items' => $navbarItems,
+            'currentItem' => -1,
+            'isAdmin' => false,
+        ],
+        'message' => [
+            'type' => 'success',
+            'message' => 'Registro exitoso'
+        ]
+    ]);
 });
 
 Route::post('logout', function (Request $request) {
