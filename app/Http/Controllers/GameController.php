@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class GameController extends Controller
@@ -54,7 +56,41 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([]);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'rating' => 'required|string|max:255',
+            'image' => ['required', Rule::imageFile()],
+        ]);
+
+        $file = $request->file('image');
+        $name = $file->getClientOriginalName();
+        Storage::disk('public')->put($name, $file);
+
+        $validated['image_url'] = asset("storage/{$name}");
+        unset($validated['image']);
+
+        // Equivale a hacer INSERT INTO games (name, price, rating, image_url) VALUES (?,?,?,?);
+        // Donde cada signo de interrogación es un valor para evitar inyecciones de SQL
+        // Laravel automáticamente asocia cada valor con su nombre, de ahi el nombre en las validaciones
+        Game::create($validated);
+
+        // SELECT id, name FROM games;
+        $games = Game::all(['id', 'name'])->all();
+
+        return Inertia::render('Admin/GameList', [
+            'message' => [
+                'type' => 'success',
+                'message' => 'Registro exitoso'
+            ],
+            'games' => $games,
+            'navbarInfo' => [
+                'isLoggedIn' => true,
+                'items' => $this->navbarItems,
+                'currentItem' => -1,
+                'isAdmin' => true,
+            ],
+        ]);
     }
 
     /**
@@ -62,7 +98,15 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        return Inertia::render('Admin/GameDetail', []);
+        return Inertia::render('Admin/GameDetail', [
+            'game' => $game,
+            'navbarInfo' => [
+                'isLoggedIn' => true,
+                'items' => $this->navbarItems,
+                'currentItem' => -1,
+                'isAdmin' => true,
+            ],
+        ]);
     }
 
     /**
@@ -86,7 +130,12 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        $validated = $request->validate([]);
+        $validated = $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'price' => 'sometimes|numeric',
+            'rating' => 'sometimes|string|max:255',
+            'image_url' => ['sometimes', Rule::imageFile()],
+        ]);
     }
 
     /**

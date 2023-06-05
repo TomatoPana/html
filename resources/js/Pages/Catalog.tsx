@@ -20,6 +20,18 @@ export interface CatalogProps {
     navbarInfo: NavbarProps;
 }
 
+const GameCard = ( props: { game: Game } ) => (
+    <div className="col-xs-12 col-sm-6 col-lg-4">
+        <div className="card">
+            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
+            <div className="card-block">
+                <h4 className="card-title">Producto 1</h4>
+                <p className="card-text">$000.00</p>
+            </div>
+        </div>
+    </div>
+)
+
 export default function Catalog ( props: CatalogProps ) {
     return (
         <>
@@ -29,7 +41,9 @@ export default function Catalog ( props: CatalogProps ) {
                 currentItem={ props.navbarInfo.currentItem }
             />
             <main className='py-56'>
-                <img src={ Logo } alt="Logo Gameflix" height="100px" />
+                <div className="nosotros">
+                    <img src={ Logo } alt="Logo Gameflix" height="100px" />
+                </div>
                 <div className="linea"></div>
                 <section id="productos-container">
                     <div className="container">
@@ -100,87 +114,7 @@ export default function Catalog ( props: CatalogProps ) {
 
                             <div className="col-xs-12 col-md-9 listado-productos">
                                 <div className="row">
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-6 col-lg-4">
-                                        <div className="card">
-                                            <img src="https://th.bing.com/th/id/OIP.hJ1c37JAEFTr-zJ3kDXIqAHaGe?pid=ImgDet&rs=1" alt="Producto 1" className="card-img-top img-fluid" />
-                                            <div className="card-block">
-                                                <h4 className="card-title">Producto 1</h4>
-                                                <p className="card-text">$000.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    { props.games.map( ( value, index ) => <GameCard game={ value } key={ index } /> ) }
                                 </div>
                             </div>
                         </div>
