@@ -136,6 +136,38 @@ class GameController extends Controller
             'rating' => 'sometimes|string|max:255',
             'image_url' => ['sometimes', Rule::imageFile()],
         ]);
+
+        if ($request->exists('image_url')) {
+            // Solo almacenar la imagen si hubo un cambio en ella
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            Storage::disk('public')->put($name, $file);
+
+            $validated['image_url'] = asset("storage/{$name}");
+            unset($validated['image']);
+        }
+
+        // Equivalente a hacer UPDATE games SET (...) where id = ?
+        // Donde (...) son los campos que se editaron y el `?` el ID del campo
+        // Laravel automáticamente hace "binding" del juego al recurso especificado
+        $game->update($validated);
+
+        // SELECT id, name FROM games;
+        $games = Game::all(['id', 'name'])->all();
+
+        return Inertia::render('Admin/GameList', [
+            'message' => [
+                'type' => 'success',
+                'message' => 'Registro exitoso'
+            ],
+            'games' => $games,
+            'navbarInfo' => [
+                'isLoggedIn' => true,
+                'items' => $this->navbarItems,
+                'currentItem' => -1,
+                'isAdmin' => true,
+            ],
+        ]);
     }
 
     /**
@@ -143,8 +175,25 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
+        // Equivalente a hacer DELETE FROM games WHERE id = ?
+        // Donde `?` corresponde al ID del juego a eliminar
         $game->delete();
 
-        return Inertia::render('Admin/GameList', []);
+        // SELECT id, name FROM games;
+        $games = Game::all(['id', 'name'])->all();
+
+        return Inertia::render('Admin/GameList', [
+            'message' => [
+                'type' => 'warning',
+                'message' => "Dato eliminado (ID eliminado: {$game->id})"
+            ],
+            'games' => $games,
+            'navbarInfo' => [
+                'isLoggedIn' => true,
+                'items' => $this->navbarItems,
+                'currentItem' => -1,
+                'isAdmin' => true,
+            ],
+        ]);
     }
 }
